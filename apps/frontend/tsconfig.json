@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/typescript-config/vite.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shadcn/utils": ["./src/shadcn/utils"]
+    }
+  },
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

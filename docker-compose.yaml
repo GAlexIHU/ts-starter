@@ -1,0 +1,62 @@
+version: "3.9"
+services:
+  postgres:
+    container_name: postgres
+    profiles:
+      - "dev"
+      - "localstack"
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    networks:
+      - dependency_network
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+
+  redis:
+    container_name: redis
+    profiles:
+      - "dev"
+      - "localstack"
+    image: redis/redis-stack-server:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - dependency_network
+
+  backend:
+    container_name: backend
+    profiles:
+      - "localstack"
+    depends_on:
+      - redis
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    env_file:
+      - ./apps/backend/docker.env
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - app_network
+      - dependency_network
+
+  frontend:
+    container_name: frontend
+    profiles:
+      - "localstack"
+    build:
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
+    restart: always
+    ports:
+      - 3001:80
+
+networks:
+  app_network:
+    driver: bridge
+  dependency_network:
+    driver: bridge

@@ -1,0 +1,6 @@
+{
+  "watch": ["dist"],
+  "ext": "js",
+  "exec": "dotenvx run -- node ./dist/index.js",
+  "legacyWatch": true
+}
