@@ -1,6 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
-import { useNavigate } from "react-router-dom";
 
 function Landing() {
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ function Landing() {
           className="flex w-full items-center space-x-2"
           onSubmit={(e) => {
             e.preventDefault();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             navigate(`/${(e.target as any)?.id?.value}`);
           }}
         >

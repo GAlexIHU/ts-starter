@@ -38,6 +38,9 @@ const getWatchExpression = (p: PackageInfo): WatchExpression => [
       [
         "anyof",
         ["match", "*.json", "basename"],
+        ["match", "*.mjs", "basename"],
+        ["match", "*.cjs", "basename"],
+        ["match", "*.js", "basename"],
         ["match", "*.env", "basename"],
         ["match", "*.env.local", "basename"],
       ],

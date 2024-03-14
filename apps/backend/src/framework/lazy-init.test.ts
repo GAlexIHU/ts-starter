@@ -1,5 +1,5 @@
 import { expect, test, vi } from "vitest";
-import { LazyInitError, layzInit } from "./lazy-init";
+import { layzInit, LazyInitError } from "./lazy-init";
 
 test("should throw error on unitialized value", () => {
   const { value } = layzInit(async () => 42);

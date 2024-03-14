@@ -1,5 +1,5 @@
-import { z } from "zod";
 import { useParams } from "react-router-dom";
+import { z } from "zod";
 import { getClient } from "../api-client";
 
 const paramSchema = z.object({
@@ -19,8 +19,8 @@ function Error() {
     },
     {
       queryKey: [id],
-      retry(failureCount, error) {
-        if (error.status >= 500) {
+      retry(failureCount, err) {
+        if (err.status >= 500) {
           return failureCount < 3;
         }
         return false;
@@ -32,7 +32,7 @@ function Error() {
     <div className="h-screen flex flex-col justify-center items-center">
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-semibold ">
-          Showing fetched data for "{id}"
+          Showing fetched data for &quot;{id}&quot;
         </h1>
         <pre className="px-8 mb-4 text-lg text-gray-600 text-justify">
           {!isLoading && JSON.stringify(data, null, 2)}

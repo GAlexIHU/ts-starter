@@ -1,7 +1,7 @@
-import { vi, test, expect, afterEach, beforeEach } from "vitest";
+import { beforeEach, expect, test, vi } from "vitest";
+import { ExampleEntity } from "../entities/example.entity";
 import { ExampleEntityRepository } from "../repositories/example-entity.repo";
 import { getExampleEntityUseCaseFactory } from "./get-example-entity.use-case";
-import { ExampleEntity } from "../entities/example.entity";
 
 const exampleEntity: ExampleEntity = {
   id: "1",

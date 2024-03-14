@@ -1,6 +1,6 @@
-import { AsyncUseCase } from "./use-case";
-import { ExampleEntityRepository } from "../repositories/example-entity.repo";
 import { ExampleEntity } from "../entities/example.entity";
+import { ExampleEntityRepository } from "../repositories/example-entity.repo";
+import { AsyncUseCase } from "./use-case";
 
 export type GetExampleEntityUseCase = AsyncUseCase<
   { id: ExampleEntity["id"] },
@@ -17,8 +17,6 @@ export const getExampleEntityUseCaseFactory: (
   deps: GetExampleEntityUseCaseDependencies,
 ) => GetExampleEntityUseCase =
   ({ exampleEntityRepo }) =>
-  async ({ id }) => {
-    return {
-      result: await exampleEntityRepo.get(id),
-    };
-  };
+  async ({ id }) => ({
+    result: await exampleEntityRepo.get(id),
+  });

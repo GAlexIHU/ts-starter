@@ -1,11 +1,11 @@
-import { APIExampleEntity, api } from "@repo/api/v1";
+import { api, APIExampleEntity } from "@repo/api/v1";
+import { ExampleEntity } from "../entities/example.entity";
 import { Cacher } from "../framework/cached";
 import { runInContext } from "../framework/context";
 import { Logger } from "../framework/logger";
+import { GetExampleEntityUseCase } from "../use-cases/get-example-entity.use-case";
 import { AsyncUseCaseInput, AsyncUseCaseOutput } from "../use-cases/use-case";
 import { RouteHandler } from "./route";
-import { GetExampleEntityUseCase } from "../use-cases/get-example-entity.use-case";
-import { ExampleEntity } from "../entities/example.entity";
 
 export const getExampleEntityRouteHandlerFactory: (deps: {
   getExampleEntityUseCase: GetExampleEntityUseCase;
@@ -21,7 +21,7 @@ export const getExampleEntityRouteHandlerFactory: (deps: {
       description: exampleEntity.description,
     });
 
-    const { value, cached } = await runInContext(
+    const { value } = await runInContext(
       { logger: request.log as unknown as Logger },
       cache<
         AsyncUseCaseInput<GetExampleEntityUseCase>,
