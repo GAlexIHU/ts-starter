@@ -23,3 +23,5 @@ The two apps are dockerised, you can build and run them with the following comma
 pnpm i
 docker compose --profile localstack up --build -d
 ```
+
+asd
